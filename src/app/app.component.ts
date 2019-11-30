@@ -22,10 +22,26 @@ export class AppComponent implements OnInit{
       'gender': new FormControl('female'),
       'hobbies': new FormArray([]),
     });
+
+    this.singupForm.statusChanges.subscribe((status) => console.log(status));
+    this.singupForm.setValue({
+      'userData': {
+        'username': 'Max',
+        'email': 'max@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
+    this.singupForm.patchValue({
+      'userData': {
+        'username': 'Anna',
+      }});
   }
+
 
   onSubmit() {
     console.log(this.singupForm);
+    this.singupForm.reset();
   }
 
   onAddHobby() {
